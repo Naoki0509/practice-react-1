@@ -7,9 +7,10 @@ import useSWR from "swr";
 
 const Home = (props) => {
 	const [posts, setPosts] = useState([]);
+
 	const fetcher = (...args) => fetch(...args).then((res) => res.json());
 	const { data, error } = useSWR(
-		"https://jsonplaceholder.typicode.com/posts",
+		"https://api.themoviedb.org/3/movie/550?api_key=60e6623055cb0d1da9e0ded2de736088",
 		fetcher
 	);
 
@@ -27,7 +28,7 @@ const Home = (props) => {
 			<div>
 				<ol>
 					{data.map((item) => {
-						return <li key={item.id}>{item.title}</li>;
+						return <li key={item.id}>{item.name}</li>;
 					})}
 				</ol>
 			</div>
